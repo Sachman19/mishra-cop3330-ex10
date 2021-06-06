@@ -12,22 +12,27 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        final int galConv = 350; //one gallon covers 350 square feet
+        final double tax = 0.055; //5.5% tax
+        double subtotal = 0.0;
 
-        System.out.print("What is the length of the ceiling in feet? (Please enter whole numbers). ");
-        int length = input.nextInt();
+        for(int i = 0; i < 3; i++) {
+            System.out.printf("What is the price of item %d? ", i+1);
+            int price = input.nextInt();
 
-        System.out.print("What is the width of the ceiling in feet? (Please enter whole numbers). ");
-        int width = input.nextInt();
+            System.out.print("How many are you purchasing? ");
+            int quantity = input.nextInt();
 
-        int area = length * width;
-
-        int gallons = area / galConv;
-        if(area % galConv != 0){
-            gallons++;
+            subtotal += price * quantity;
         }
 
         System.out.println();
-        System.out.printf("You need %d gallons of paint", gallons);
+        System.out.printf("Subtotal: $%.2f%n", subtotal);
+
+        double taxamount = subtotal * tax;
+        System.out.printf("Tax: $%.2f%n", taxamount);
+
+        subtotal += taxamount;
+        System.out.printf("Total: $%.2f%n", subtotal);
+
     }
 }
